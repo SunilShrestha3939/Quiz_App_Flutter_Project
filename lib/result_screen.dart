@@ -75,7 +75,7 @@ class ResultScreen extends StatelessWidget{
             const SizedBox(height: 30,),
             QuestionsSummery(summeryData), //here function wants list type argument and getSummeryData() function returns list 
             const SizedBox(height: 30,),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: resetScreen, 
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
@@ -83,7 +83,8 @@ class ResultScreen extends StatelessWidget{
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
               ),
-              child:  Text('Reset Quiz!',
+              icon: const Icon(Icons.restart_alt),
+              label:  Text('Reset Quiz!',
               style: GoogleFonts.lato(
                     color: Color.fromARGB(255, 243, 245, 245),
                     fontSize: 16, 
