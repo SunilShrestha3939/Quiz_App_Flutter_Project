@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen(
-      this.startQuiz, //accept pointer to switchScreen() func that can be used in current function
+      this.startQuiz, //accept pointer to switchScreen() func that can be used in current class
       {super.key}); //accept named key and forward it to super class
 
   final void Function() startQuiz;  //passed argument cannot be directly used inside build function so using 'this.startQuiz' and making final variable which keeps pointer to function which returns void 

@@ -3,7 +3,7 @@ import 'package:adv_basics/questions_screen.dart';
 import 'package:adv_basics/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:adv_basics/start_screen.dart';
-// import 'package:flutter/widgets.dart';
+
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});  //constructor
@@ -13,15 +13,16 @@ class Quiz extends StatefulWidget {
     return _QuizState();
   } //'createState' creates instance of a class thats based on State connected to 'Quiz' ie instance of 'QuizState' class
 }
+
 //MANAGED state
 class _QuizState extends State<Quiz> {  //automatically creates constructor
   List<String> selectedAnswers = [];  //var type as it is initiallized  //to store the answers we have chosen/selected
   Widget? activeScreen;  //nullable variable 
 
-  void choosenAnswer(String answer){  //function which accepts the chosen answer and appends that data in selectedAnswer list variable
+  void choosenAnswer(String answer){  //function which accepts the chosen answer from "questions_screen.dart" and appends that data in selectedAnswer list variable
     selectedAnswers.add(answer);
 
-    //to handle what comes after all the questions have been rendered 
+    //to handle what comes after all the questions have been rendered ie after answering last
     if(selectedAnswers.length == questions.length){ //all questions have been answered
       setState(() {   //internal state of this object has changed in a way that might impact the user interface in this subtree
         activeScreen = ResultScreen(choosenAnswer: selectedAnswers, resetScreen: resetQuiz,); 
@@ -90,7 +91,7 @@ class _QuizState extends State<Quiz> {  //automatically creates constructor
 
 //WHAT IT DOES??
 // initiallize the activeScreen variable to startScreen widget
-//it creates a container which have gradient color effect
+// it creates a container which have gradient color effect
 // calls activeScreen variable which stores startScreen as a value ie startScreen widget is executed, which accepts switchScreen function as argument 
-//inside startScreen widget on pressing the button, switchScreen function is called, inside which value of activeScreen variable is changed  to QuestionsScreen widget, which accept the choosenAnswer function as argument
-//inside QuestionScreen widget on pressing the answer button, selected answer is passed to answerQuestion function, inside which that answer is passed to choosenAnswer function, which append and stores the selected data to display letter
+// inside startScreen widget on pressing the button, switchScreen function is called, inside which value of activeScreen variable is changed  to QuestionsScreen widget, which accept the choosenAnswer function as argument
+// inside QuestionScreen widget on pressing the answer button, selected answer is passed to answerQuestion function, inside which that answer is passed to choosenAnswer function, which append and stores the selected data to display letter

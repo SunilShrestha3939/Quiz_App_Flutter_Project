@@ -23,7 +23,11 @@ class ResultScreen extends StatelessWidget{
       );
     }
     return summary; 
-  }
+  }   
+            //Creating varible containing list of map containing different keys and values, which is created by appling loop on selectedAnswer[] of Quiz() class
+
+
+
 
   // List<Map<String, Object>>  get summeryData{        
   //   final List<Map<String, Object>> summary = [];
@@ -45,12 +49,16 @@ class ResultScreen extends StatelessWidget{
                                       //have body like function but called like variable--ie just summeryData
 
 
+
+
+
   @override
   Widget build(context){
     final summeryData = getSummeryData();   
     final numTotalQuestions = questions.length;
     final numCorrectQuestions = summeryData.where((data){
-      return data['user_answer'] == data['correct_answer']; //returns true if condition is true and will be added to new list
+      return data['user_answer'] == data['correct_answer']; //returns true if condition is true and will be added to new list ie if False will not be added and doesnt affect the length
+        //"where" creates new list of boolean type
                                 //(data) => data['user_answer'] == data['correct_answer'],  //used when simple anonymous function which take input values immediately returns performs no other operations inside of the function body
                                 //only have return statement inside function body
     }).length;  //.length as we want no of right answers  
@@ -68,13 +76,17 @@ class ResultScreen extends StatelessWidget{
           children: [
              Text('You answered $numCorrectQuestions out of $numTotalQuestions correctly!!!',
              style: GoogleFonts.lato(
-                    color: Color.fromARGB(255, 242, 245, 244),
+                    color: const Color.fromARGB(255, 242, 245, 244),
                     fontSize: 16, 
                     fontWeight: FontWeight.bold, 
                   ),),
+
             const SizedBox(height: 30,),
+
             QuestionsSummery(summeryData), //here function wants list type argument and getSummeryData() function returns list 
+
             const SizedBox(height: 30,),
+            
             ElevatedButton.icon(
               onPressed: resetScreen, 
               style: ElevatedButton.styleFrom(
@@ -86,7 +98,7 @@ class ResultScreen extends StatelessWidget{
               icon: const Icon(Icons.restart_alt),
               label:  Text('Reset Quiz!',
               style: GoogleFonts.lato(
-                    color: Color.fromARGB(255, 243, 245, 245),
+                    color: const Color.fromARGB(255, 243, 245, 245),
                     fontSize: 16, 
                     fontWeight: FontWeight.bold, 
                   ),

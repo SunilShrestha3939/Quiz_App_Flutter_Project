@@ -2,7 +2,9 @@
 
 
 //here first answers are always correct answers
+            //
  const questions = [
+                        // List which stores object of class QuizQuestion(), which have properties text and answers
   QuizQuestion(
     'What are the main building blocks of Flutter UIs?',
     [

@@ -20,7 +20,7 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
 
   void answerQuestion(String selectedAnswer){
     widget.onSelectAnswer(selectedAnswer);  //"widget" is used to hold on property that belongs to the widget class inside of state class as 'onSelectAnswer' is available in QuestionsScreen widget class but we need it in state class
-    setState(() {
+    setState(() {   //yo vitra ko code ley internal state of this obj change garxa haii vanya
       currentQuestionIndex++;
     });
   } //accepts the selected answer and passes to choosenAnswer list
@@ -28,7 +28,9 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
 
   @override
   Widget build(context){
-    final currentQuestion = questions[currentQuestionIndex];
+    final currentQuestion = questions[currentQuestionIndex];  
+              //type of variable is same as type of assigned value
+              //here questions is list containing objects of class/type QuizQuestion, so 'currentQuestion' contains object 
 
     return SizedBox(
       width: double.infinity, //use as much width as it can 
@@ -47,18 +49,21 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
               ),
               textAlign: TextAlign.center,
               ),
+
             const SizedBox(height: 30),
+
             ...currentQuestion.getShuffledAnswers().map((answers){ 
                                                      //we needed to convert string type 'answer' to widget type because column only accepts widget type as children
                                                      //List of answer is of String type so new type ko answers should be of type string
                                                      //"Shuffle"- unlike map it does change the original list
+                                                     //After converting string('answers') to widget('AnswerButton'), those widgets are also in List but children argument wants widget only, so we have to spread this list ie convert list to individual values 
               return AnswerButton(
                 answerText: answers, 
                 onTap: (){answerQuestion(answers);  //executed when button is tapped
                 //it passes the selected answer to choosenAnswer list via different functions, where selected answer is stored to display it  
                                                     //way to pass function that doesnt return void to the argument that require void function
                 });  //new items should be based on old items
-            }), // to convert strings to widget
+            }), // map()--to convert strings to widget
                                     //list can have broad variety of built in functions that can be called on them which interact in different ways
                                     //'map' allows to transform the values in a list to other values
                                       //'map' takes functions as values and will be executed automatically by dart for every list item and then dart also automatically pass the list item for which it is currently executing this function as an argument to this function
